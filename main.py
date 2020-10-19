@@ -287,8 +287,60 @@ def promedio_facultades(info: dict, contando_externos: bool = True) -> tuple:
 			* Valor -> Promedio de la favultad (tipo Float) 
 				-> Debe estar redondeado a 2 decimales (round (valor, 2))
 		-> Debe estar ordenado alfabeticamente 
-		
+"""		
+# CORREOS
+""" ¿Como Armar los correos electronicos de los estudiantes?
+
+	-> Obtener los nombres del estudiante (tipo str)
+	-> Obtener los apellidos del estudiante (tipo str)
+	-> Obtener el documento del estudiante (tipo int)
+
+	-> Separar los dos nombres (Funcion split)
+	-> Separar los dos apellidos (Funcion split)
+	SPLIT -> ['', '', .....]
+	nombres = "Carlos"
+	nombres.split -> ['Carlos']
+	[pos0, pos1, pos2, .....]
+	a = "abdc"
+	valora = a[-2] 
+
+	-> Convertir el documento del estudiante a String
+
+	CONDICIONALES
+	-> Si el estudiante tiene dos nombres
+		-----------------------------------
+		Estructura
+		-----------------------------------
+		* Primera letra del primer nombre
+		* Primera letra del segundo nombre
+		* (".") un punto
+		* Primer Apellido
+		* Dos ultimos numeros del documento
+		-----------------------------------
+	-> Si el estudiante tiene un nombre
+		-----------------------------------
+		Estructura
+		-----------------------------------
+		* Primera letra del primer nombre
+		* Primera letra del primer apellido
+		* (".") un punto
+		* Segundo Apellido
+		* Dos ultimos numeros del documento
+		-----------------------------------
+
+	-> Convertir todas los caracteres del correo a letras minusculas (funcion lower)
+	-> Convertir los caracteres del alfabeto con tilde (á, é, í, ó, ú) a sin tilde 
+	   y Convertir el caracter (ñ) a (n)
+	   (funcion replace)
+
 """
+# EXTRA CORREOS
+""" Lista de salida de correos
+	-> Debe ser una lista
+	-> No deben existir correos repetidos (conjunto -> set())
+	-> Deben estar ordenados alfabeticamente (funcion sort)
+"""
+
 #SALIDA
 """SALIDA -> Tupla
 ( Diccionario con Facultades , Lista con correos )
@@ -1082,133 +1134,3 @@ print(promedio_facultades({
 # ({'Arquitectura': 3.84, 'Diseño': 3.37, 'Historia del Arte': 3.66, 'Ingenieria': 3.88, 'Medicina': 3.45}, ['aj.romero88', 'cn.gomez49', 'cp.diaz17', 'cv.guitierrez49', 'cv.lopez69', 'jf.sanchez46', 'jm.fernandez20', 'jp.cordoba36', 'lc.perez11', 'mj.lopez07', 'np.alvarez22', 'pn.jimenez77', 'sg.moreno12', 'sn.alvarez97'])
 # Mi salida
 # ({'Arquitectura': 3.84, 'Diseño': 3.37, 'Historia del Arte': 3.66, 'Ingenieria': 3.88, 'Medicina': 3.45}, ['aj.romero88', 'cn.gomez49', 'cp.diaz17', 'cv.guitierrez49', 'cv.lopez69', 'jf.sanchez46', 'jm.fernandez20', 'jp.cordoba36', 'lc.perez11', 'mj.lopez07', 'np.alvarez22', 'pn.jimenez77', 'sg.moreno12', 'sn.alvarez97'])
-
-
-""" ¿Como Armar los correos electronicos de los estudiantes?
-
-	-> Obtener los nombres del estudiante (tipo str)
-	-> Obtener los apellidos del estudiante (tipo str)
-	-> Obtener el documento del estudiante (tipo int)
-
-	-> Separar los dos nombres (Funcion split)
-	-> Separar los dos apellidos (Funcion split)
-	SPLIT -> ['', '', .....]
-	nombres = "Carlos"
-	nombres.split -> ['Carlos']
-	[pos0, pos1, pos2, .....]
-	a = "abdc"
-	valora = a[-2] 
-
-	-> Convertir el documento del estudiante a String
-
-	CONDICIONALES
-	-> Si el estudiante tiene dos nombres
-		-----------------------------------
-		Estructura
-		-----------------------------------
-		* Primera letra del primer nombre
-		* Primera letra del segundo nombre
-		* (".") un punto
-		* Primer Apellido
-		* Dos ultimos numeros del documento
-		-----------------------------------
-	-> Si el estudiante tiene un nombre
-		-----------------------------------
-		Estructura
-		-----------------------------------
-		* Primera letra del primer nombre
-		* Primera letra del primer apellido
-		* (".") un punto
-		* Segundo Apellido
-		* Dos ultimos numeros del documento
-		-----------------------------------
-
-	-> Convertir todas los caracteres del correo a letras minusculas (funcion lower)
-	-> Convertir los caracteres del alfabeto con tilde (á, é, í, ó, ú) a sin tilde 
-	   y Convertir el caracter (ñ) a (n)
-	   (funcion replace)
-
-"""
-""" Lista de salida de correos
-	-> Debe ser una lista
-	-> No deben existir correos repetidos (conjunto -> set())
-	-> Deben estar ordenados alfabeticamente (funcion sort)
-"""
-""" 1. No olvidar el Try Except
-	2. Como acceder a la información contenida en el diccionario
-	3. Validaciones para cada estudiante
-		-> Cuando la variable contando-externos (tipo Bool) es True:
-			---------------------------------------------------------------
-			* Se tienen en cuenta solo las materias que no fueron retiradas
-			* No se tiene en cuenta materias con 0 creditos
-			---------------------------------------------------------------
-
-		-> Cuando la variable contando-externos (tipo Bool) es False
-		--------------------------------------------------------------------------------------
-			* Se tienen en cuenta solo las materias que no fueron retiradas
-			* No se tiene en cuenta materias con 0 creditos
-			--------------------------------------------------------------------------------------
-			* Se tienen en cuenta solo las materias que correspondan a el programa del estudiante
-			* No se tienen en cuenta los estudiantes cuyo periodo de ingreso sea 'Curso de verano',
-			  el cual esta representado como un 05 en el codigo del estudiante
-			--------------------------------------------------------------------------------------
-
-		-> Extra
-			* No tener en cuenta materias cuyos creditos sean negativos o [< a 0]
-			* No tener en cuenta materias cuya nota sea negativa o [< a 0.0]
-
-	4. Armar los correos electronicos de los estudiantes
-
-		-> Separar los dos nombres (Funcion split)
-		-> Separar los dos apellidos (Funcion split)
-
-		CONDICIONALES
-		-> Si el estudiante tiene dos nombres
-			-----------------------------------
-			Estructura
-			-----------------------------------
-			* Primera letra del primer nombre
-			* Primera letra del segundo nombre
-			* (".") un punto
-			* Primer Apellido
-			* Dos ultimos numeros del documento
-			-----------------------------------
-		-> Si el estudiante tiene un nombre
-			-----------------------------------
-			Estructura
-			-----------------------------------
-			* Primera letra del primer nombre
-			* Primera letra del primer apellido
-			* (".") un punto
-			* Segundo Apellido
-			* Dos ultimos numeros del documento
-			-----------------------------------
-
-		-> Convertir todas los caracteres del correo a letras minusculas
-		-> Convertir los caracteres del alfabeto con tilde (á, é, í, ó, ú) a sin tilde
-		-> Convertir el caracter (ñ) a (n)
-
-"""
-'''
-CONSIDERACIONES JULIAN -> Explicaion Extra
-CONSIDERACIONES IMPORTANTES PARA LOS CORREOS ELECTRÓNICOS:
-* No debe tener duplicados (Hay que guardarlos en un conjunto [set] para evitar duplicados
-							, y luego se convierte a una lista [list])
-* Debe estar completamente en minúsculas
-* No debe tener acentos
-
-EL PROMEDIO DE LA FACULTAD: 
-* Debe reportarse redondeado a dos decimales (Usamos la funcion para redondear -> 
-											  round(valor, 2))
-* No debe considerar las materias retiradas
-* Si contando_externos es False, no debe considerar materias electivas ni vacacionales
-
-FORMULA
-( Sumatoria [ NotaMateria * CreditosMateria ] ) / ( Sumatoria (CreditosMateria))
-
-Salida??? -> Tupla
-( Diccionario con Facultades , Lista con correos )
-Diccionario con Facultades {llave : Valor}
--> Llave = Nombre de la facultad -> String
--> Valor = Promedio de notas de la facultad -> Float
-'''
