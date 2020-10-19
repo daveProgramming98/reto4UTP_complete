@@ -1,4 +1,5 @@
-# ¿Como recorrer listas?
+# EJEMPLOS
+# ¿Como recorrer listas con For?
 # LISTA NORMAL
 a = [1, 2, 3, 4]
 for valor_a in a:
